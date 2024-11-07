@@ -1,0 +1,57 @@
+---
+import { getEntry } from 'astro:content';
+
+// Fetch dynamic content from markdown or JSON file (replace 'projects' and 'arushi' with your actual file path and entry key)
+const project = await getEntry('projects', 'arushi');
+import '../styles/style.css'; // Import your custom CSS
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{project.data.title}</title>
+  </head>
+  <body>
+    <header>
+      <div class="polygon">
+        <div class="header-content">
+          <div class="header-title">
+            {project.data.headerTitle}
+            <div class="highlight">.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Median Section -->
+    <div class="container">
+      <div class="content">
+        <p>{project.data.description1}</p>
+        <p>{project.data.description2}</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="text-blue">
+        {project.data.sectionTitle}
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <p>{project.data.sectionDescription1}</p>
+        <p>{project.data.sectionDescription2}</p>
+      </div>
+    </div>
+
+    <!-- YouTube Iframe -->
+    <iframe
+      src={project.data.youtubeUrl}
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </body>
+</html>
